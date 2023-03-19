@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<!-- saved from url=(0155) -->
+<html><head><meta http-equiv="Content-Type" content="no-cache" content="text/html; charset=ISO-8859-1">
+	<title>a</title>
+
+
+	<link rel="stylesheet" type="text/css" href="./a_files/jquery.smarticker.css">
+	<link rel="stylesheet" type="text/css" href="./a_files/style.css">
+	<link rel="stylesheet" href="./a_files/main.css">
+    <link rel="stylesheet" href="./a_files/MetroJs.lt.css">
+    <link href="./a_files/zframework.css" rel="stylesheet" type="text/css" />
+    <link href="./a_files/example_zframework.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="./a_files/MetroJs.lt.js"></script>
+    <script type="text/javascript" src="a_files/jwerty.js"></script>
+    <script type="text/javascript" src="a_files/jwerty.canBridge.js"></script>
+    <script type="text/javascript" src="a_files/jwerty.enderBridge.js"></script>
+	<script src="./a_files/jquery-1.7.2.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="./a_files/jquery.js"></script>	
+	<script type="text/javascript">
+	/************************************************************************************************************
+	(C) www.dhtmlgoodies.com, October 2005
+
+	This is a script from www.dhtmlgoodies.com. You will find this and a lot of other scripts at our website.
+
+	Terms of use:
+	You are free to use this script as long as the copyright message is kept intact. However, you may not
+	redistribute, sell or repost it without our permission.
+
+	Thank you!
+
+	www.dhtmlgoodies.com
+	Alf Magne Kalleland
+
+	************************************************************************************************************/
+	var dhtmlgoodies_marqueeSteps = 1;	// Higher = Faster, Lower = slower and more smoothly
+	var dhtmlgoodies_marqueeSpeed = 10;	// Lower value = Faster
+	var dhtmlgoodies_marqueeStopOnMouseOver = false;	// Make the marquee stop moving when user moves his mouse over it
+	var dhtmlgoodies_marqueePosition = 'bottom';	// "top" or "bottom"
+
+	/* Don't change anything below here */
+	var dhtmlgoodies_marqueeObj;
+	var dhtmlgoodies_marqueeTextObj;
+	var dhtmlgoodies_marqueeTmpStep;
+	var dhtmlgoodies_marqueeTextObjects = new Array();
+	var dhtmlgoodies_marqueeHiddenSpans = new Array();
+
+	var dhtmlgoodies_marqueeIndex = 0;
+	function repositionMarquee(e,timeout)
+	{
+		if(document.all)e=event;
+		if(dhtmlgoodies_marqueePosition.toLowerCase()=='top'){
+			dhtmlgoodies_marqueeObj.style.top = '0px';
+		}else{
+			dhtmlgoodies_marqueeObj.style.bottom = '-1px';
+		}
+		if(document.all && !timeout)setTimeout('repositionMarquee(false,true)',500)
+	}
+	function marqueeMove()
+	{
+		var leftPos = dhtmlgoodies_marqueeTextObj.offsetLeft;
+		leftPos = leftPos - dhtmlgoodies_marqueeTmpStep;
+		var rightEdge = leftPos + dhtmlgoodies_marqueeHiddenSpans[dhtmlgoodies_marqueeIndex].offsetLeft;
+		if(rightEdge<0){
+			leftPos = document.documentElement.offsetWidth;
+			dhtmlgoodies_marqueeTextObj.style.display='none';
+			dhtmlgoodies_marqueeIndex++;
+			if(dhtmlgoodies_marqueeIndex>=dhtmlgoodies_marqueeTextObjects.length)dhtmlgoodies_marqueeIndex = 0;
+			dhtmlgoodies_marqueeTextObj = dhtmlgoodies_marqueeTextObjects[dhtmlgoodies_marqueeIndex];
+			dhtmlgoodies_marqueeTextObj.style.display='block';
+
+		}
+		dhtmlgoodies_marqueeTextObj.style.left = leftPos + 'px';
+
+	}
+
+	function stopMarqueeMove()
+	{
+		if(dhtmlgoodies_marqueeStopOnMouseOver)dhtmlgoodies_marqueeTmpStep = 0;
+	}
+	function resumeMarqueeMove()
+	{
+		dhtmlgoodies_marqueeTmpStep = dhtmlgoodies_marqueeSteps;
+	}
+	function initMarquee()
+	{
+		dhtmlgoodies_marqueeObj = document.getElementById('dhtmlgoodies_marquee');
+
+		var spans = dhtmlgoodies_marqueeObj.getElementsByTagName('DIV');
+		for(var no=0;no<spans.length;no++){
+			if(spans[no].className=='textObj'){
+				if(!dhtmlgoodies_marqueeTextObj){
+					dhtmlgoodies_marqueeTextObj = spans[no];
+					spans[no].style.display='block';
+				}else spans[no].style.display='none';
+				dhtmlgoodies_marqueeTextObjects.push(spans[no]);
+				var hiddenSpan = document.createElement('SPAN');
+				hiddenSpan.innerHTML = ' '
+				spans[no].appendChild(hiddenSpan);
+				dhtmlgoodies_marqueeHiddenSpans.push(hiddenSpan);
+
+			}
+		}
+
+		var oldIE = isOldIe();
+
+		if(dhtmlgoodies_marqueePosition.toLowerCase()=='top'){
+			dhtmlgoodies_marqueeObj.style.top = '0px';
+		}else{
+			if(oldIE){
+				dhtmlgoodies_marqueeObj.style.bottom = '0px';
+			}else{
+				dhtmlgoodies_marqueeObj.style.bottom = '-1px';
+			}
+		}
+
+
+
+
+		dhtmlgoodies_marqueeObj.style.display='block';
+		dhtmlgoodies_marqueeTextObj.style.left = document.documentElement.offsetWidth + 'px';
+		dhtmlgoodies_marqueeObj.onmouseover = stopMarqueeMove;
+		dhtmlgoodies_marqueeObj.onmouseout = resumeMarqueeMove;
+		if(oldIE)window.onscroll = repositionMarquee; else dhtmlgoodies_marqueeObj.style.position = 'fixed';
+
+		dhtmlgoodies_marqueeObj.style.display='block';
+		dhtmlgoodies_marqueeTmpStep = dhtmlgoodies_marqueeSteps;
+
+		setInterval('marqueeMove()',dhtmlgoodies_marqueeSpeed);
+	}
+
+	function isOldIe() {
+		var isMsie = navigator.userAgent.indexOf('MSIE') >=0;
+		if(isMsie) {
+			string = '';
+			for(var prop in navigator) {
+				string = string + prop + ':' + navigator[prop] + '\n';
+
+			}
+			var version = navigator.userAgent;
+			for(var i=4;i<=7;i++) {
+				if(version.indexOf('MSIE ' + i) >=0){
+					return true;
+				}
+			}
+			return false;
+		}else{
+			return false;
+		}
+
+	}
+
+	</script>
+<script type="text/javascript">
+
+function GetClock(){
+d = new Date();
+nhour  = d.getHours();
+nmin   = d.getMinutes();
+     if(nhour ==  0) {ap = " AM";nhour = 12;} 
+else if(nhour <= 11) {ap = " AM";} 
+else if(nhour == 12) {ap = " PM";} 
+else if(nhour >= 13) {ap = " PM";nhour -= 12;}
+
+if(nmin <= 9) {nmin = "0" +nmin;}
+
+
+document.getElementById('clockbox').innerHTML=""+nhour+":"+nmin+ap+"";
+setTimeout("GetClock()", 1000);
+}
+window.onload=GetClock;
+</script>
+
+
+
+
+
+
+    </head>
+<body style="background:#000;"><style type="text/css" id="generatedSmoothing">*:not(pre|code){text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;}pre,code{-webkit-font-smoothing:auto;}</style>
+	
+
+<script src="./a_files/jquery.zrssfeed.min.js" type="text/javascript"></script>
+<script src="./a_files/jquery.zframework.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#zticker').rssfeed('http://dzrhnews.com/feed/',{
+		header: false,
+		titletag: 'div',
+		date: false,
+		content: false
+	}, function(e) {
+		$.zazar.ticker({selector: '#zticker ul'});
+	});
+
+	$('#zslider').rssfeed('http://dzrhnews.com/feed/',{
+		header: false,
+		titletag: 'div',
+		date: false,
+		content: false,
+		limit: 20
+	}, function(e) {
+		$.zazar.slider({selector: '#zslider ul'});
+	});
+
+	$('#zrotate').rssfeed('http://mix.chimpfeedr.com/d68ce-ayaldevtext',{
+		header: false,
+		titletag: 'div',
+		date: false,
+		content: false,
+		limit: 50
+	}, function(e) {
+		$.zazar.rotate({selector: '#zrotate ul'});
+	});
+});
+</script>
+<div id="time">
+	<div id="clockbox"></div>
+</div>
+<div id="tweets"><div id="zrotate"></div></div>
+
+<!-- Start of marquee HTML code -->
+<div id="blackticker"><div id="dhtmlgoodies_marquee" style="z-index:1;">
+	<div class="textObj">PAGASA: ISSUED AT 5:00 A.M., 01 JUNE 2014 | SYNOPSIS: INTERTROPICAL CONVERGENCE ZONE (ITCZ) AFFECTING MINDANAO. RIDGE OF HIGH PRESSURE AREA (HPA) EXTENDING OVER THE EASTERN SECTION OF LUZON. | FORECAST: PALAWAN AND MINDANAO WILL EXPERIENCE CLOUDY SKIES WITH LIGHT TO MODERATE RAINSHOWERS AND THUNDERSTORMS. METRO MANILA AND THE REST OF THE COUNTRY WILL BE PARTLY CLOUDY TO CLOUDY WITH ISOLATED RAINSHOWERS OR THUNDERSTORMS. LIGHT TO MODERATE WINDS COMING FROM THE SOUTHEAST WILL PREVAIL OVER MINDANAO AND FROM THE SOUTHEAST TO EAST OVER THE REST OF THE COUNTRY. THE COASTAL WATERS THROUGHOUT THE ARCHIPELAGO WILL BE SLIGHT TO MODERATE. | FOR MORE INFO: WWW.NOAH.DOST.GOV.PH | TIDE PREDICTIONS: MANILA:    2014-05-31  5:26 AM PHT   SUNRISE | 10:58 AM PHT   1.22 METERS  HIGH TIDE | 6:21 PM PHT   SUNSET | 7:22 PM PHT  -0.08 METERS  LOW TIDE |  CEBU:  12:52 AM PHT   0.92 METERS  HIGH TIDE | 5:21 AM PHT   SUNRISE |5:30 AM PHT   0.42 METERS  LOW TIDE | 12:04 PM PHT   1.80 METERS  HIGH TIDE | 6:02 PM PHT   SUNSET | 7:18 PM PHT  -0.17 METERS  LOW TIDE |   DAVAO:  12:30 AM PHT   0.11 METERS  LOW TIDE | 5:20 AM PHT   SUNRISE |6:44 AM PHT   1.75 METERS  HIGH TIDE | 1:16 PM PHT  -0.15 METERS  LOW TIDE | 5:50 PM PHT   SUNSET | 7:22 PM PHT   1.34 METERS  HIGH TIDE |</div>
+</div></div>
+<!-- END OF MARQUEE HTML CODE -->
+<script type="text/javascript">
+initMarquee();	// Initialize marquee script
+</script>
+
+
+<div class="live-tile pse" data-mode="carousel" data-direction="vertical" data-delay="2500" style="z-index:2;">
+
+		<div>
+        	CURRENCY EXCHANGE
+		</div>
+        <div>
+            U.S. $ 43.760
+        </div>
+        <div>
+            JPN 0.4317
+        </div>
+        <div>
+            U.K.POUND 73.4416
+        </div>
+        <div>
+            HKD $ 5.6662
+        </div>
+		<div>
+        	SWISS FRANC 48.9328
+		</div>
+		<div>
+        	CAN $ 40.5492
+		</div>
+        <div>
+        	SGD 35.0295
+		</div>
+        <div>
+        	AUS  40.8357
+		</div>
+        <div>
+        	BAH DIN 116.5172
+		</div>
+        <div>
+        	SAR RIAL 11.7123
+		</div>
+        <div>
+        	BRUN 34.8904
+		</div>
+        <div>
+        	INDO RUPIAH 0.0038
+		</div>
+        <div>
+        	THAI BAHT  1.3405
+		</div>
+        <div>
+        	AED DIRHAM 11.9597
+		</div>
+        <div>
+        	CHIN YUAN 7.0397
+		</div>
+        <div>
+        	KOR WON 0.0430
+		</div> 
+        <div>
+        	PHILIPPINE STOCK EXCHANGE
+		</div>
+        <div>
+        	6,676.67 DOWN
+		</div>
+        <div>
+        	-111.21 | 1.64
+		</div>
+
+</div>
+
+				
+<div class="smarticker1 smarticker theme1 box size1"> 
+ <div class="theme1 tickertitle sec1-2">
+                  
+                  
+<div class="tiles"> 
+ <div class="live-tile flip ha" data-mode="flip">
+ 		<div style="-webkit-transform: rotateX(360deg); -webkit-transition: all 500ms ease 0s; transition: all 500ms ease 0s; background-color:#333; line-height:30px;" class="flip-front ha">
+         
+      <video src="v_files/test.mp4" autoplay muted loop height="110px;"></video>
+        </div>
+		<div style="-webkit-transform: rotateX(180deg); -webkit-transition: all 500ms ease 0s; transition: all 500ms ease 0s; background-color:#FF9; line-height:30px;" class="flip-back ha">
+          <div id="news"></div>
+        </div>                         
+    </div>
+    </div>
+                  
+  </div>
+
+
+<div style="display: block; height: 100px;" id="zticker">
+	<div id="zticker"></div>
+ 
+</div>
+ 
+         
+
+	<script type="text/javascript" src="./a_files/jquery.newsfeed.js"></script>  
+    <script src="./a_files/MetroJs.lt.js" type="text/javascript"></script>
+	<script type="text/javascript">
+        $(document).ready(function () {
+            $(".live-tile,.flip-list").liveTile();
+        });
+    </script>
+           
+<script>
+var newsText = {
+"<span class=\"plug web\">dzrhnews.com</span>" : "#",
+"<span class=\"plug fb\">fb.com/dzrhnews</span>" : "#",
+"<span class=\"plug tw\">twitter.com/dzrhnews</span>" : "#",
+"<span class=\"plug sms\">Textline:<br/>RH&lt;space&gt;MESSAGE<br/>send to 2600</span>" : "#",
+"<span class=\"plug phone\">Hotline:<br/>(02)8326117 & (02)8326116</span>" : "#",
+"Pangunahing Balita" : "#",
+"Joe Taruc" : "#",
+"Deo Macalma" : "#"
+}
+$('#news').newsFeed({
+newsData: newsText,
+type:1, // 1=fade effect
+timeInterval: 5000, // animation interval
+targetBlank: true // Open the link in a new window
+});
+</script>
+<script>
+$( document ).ready(function() {
+  $( "#tweets" ).show( 300 ).delay( 800 ).hide( 400 );
+});
+
+jwerty.key('a', function() {
+  $( ".smarticker, .pse" ).toggle( "fast" );
+    $( "#blackticker" ).toggle( "slow" );
+});
+
+jwerty.key('s', function() {
+  $( "#tweets" ).toggle( "medium" ).css("visibility", "visible");
+});
+</script>
+
+</body></html>

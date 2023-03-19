@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<!-- saved from url=(0155) -->
+<html><head><meta http-equiv="Content-Type" content="no-cache" content="text/html; charset=ISO-8859-1">
+	<title>C</title>
+
+
+	<link rel="stylesheet" type="text/css" href="./a_files/jquery.smarticker.css">
+	<link rel="stylesheet" type="text/css" href="./a_files/style.css">
+	<link rel="stylesheet" href="./a_files/main.css">
+    <link rel="stylesheet" href="./a_files/MetroJs.lt.css">
+    <link href="./a_files/zframework.css" rel="stylesheet" type="text/css" />
+    <link href="./a_files/example_zframework.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="./a_files/MetroJs.lt.js"></script>
+    <script type="text/javascript" src="a_files/jwerty.js"></script>
+    <script type="text/javascript" src="a_files/jwerty.canBridge.js"></script>
+    <script type="text/javascript" src="a_files/jwerty.enderBridge.js"></script>
+	<script src="./a_files/jquery-1.7.2.min.js" type="text/javascript"></script>
+	<script type="text/javascript" src="./a_files/jquery.js"></script>	
+	<script type="text/javascript">
+	/************************************************************************************************************
+	(C) www.dhtmlgoodies.com, October 2005
+
+	This is a script from www.dhtmlgoodies.com. You will find this and a lot of other scripts at our website.
+
+	Terms of use:
+	You are free to use this script as long as the copyright message is kept intact. However, you may not
+	redistribute, sell or repost it without our permission.
+
+	Thank you!
+
+	www.dhtmlgoodies.com
+	Alf Magne Kalleland
+
+	************************************************************************************************************/
+	var dhtmlgoodies_marqueeSteps = 1;	// Higher = Faster, Lower = slower and more smoothly
+	var dhtmlgoodies_marqueeSpeed = 10;	// Lower value = Faster
+	var dhtmlgoodies_marqueeStopOnMouseOver = false;	// Make the marquee stop moving when user moves his mouse over it
+	var dhtmlgoodies_marqueePosition = 'bottom';	// "top" or "bottom"
+
+	/* Don't change anything below here */
+	var dhtmlgoodies_marqueeObj;
+	var dhtmlgoodies_marqueeTextObj;
+	var dhtmlgoodies_marqueeTmpStep;
+	var dhtmlgoodies_marqueeTextObjects = new Array();
+	var dhtmlgoodies_marqueeHiddenSpans = new Array();
+
+	var dhtmlgoodies_marqueeIndex = 0;
+	function repositionMarquee(e,timeout)
+	{
+		if(document.all)e=event;
+		if(dhtmlgoodies_marqueePosition.toLowerCase()=='top'){
+			dhtmlgoodies_marqueeObj.style.top = '0px';
+		}else{
+			dhtmlgoodies_marqueeObj.style.bottom = '-1px';
+		}
+		if(document.all && !timeout)setTimeout('repositionMarquee(false,true)',500)
+	}
+	function marqueeMove()
+	{
+		var leftPos = dhtmlgoodies_marqueeTextObj.offsetLeft;
+		leftPos = leftPos - dhtmlgoodies_marqueeTmpStep;
+		var rightEdge = leftPos + dhtmlgoodies_marqueeHiddenSpans[dhtmlgoodies_marqueeIndex].offsetLeft;
+		if(rightEdge<0){
+			leftPos = document.documentElement.offsetWidth;
+			dhtmlgoodies_marqueeTextObj.style.display='none';
+			dhtmlgoodies_marqueeIndex++;
+			if(dhtmlgoodies_marqueeIndex>=dhtmlgoodies_marqueeTextObjects.length)dhtmlgoodies_marqueeIndex = 0;
+			dhtmlgoodies_marqueeTextObj = dhtmlgoodies_marqueeTextObjects[dhtmlgoodies_marqueeIndex];
+			dhtmlgoodies_marqueeTextObj.style.display='block';
+
+		}
+		dhtmlgoodies_marqueeTextObj.style.left = leftPos + 'px';
+
+	}
+
+	function stopMarqueeMove()
+	{
+		if(dhtmlgoodies_marqueeStopOnMouseOver)dhtmlgoodies_marqueeTmpStep = 0;
+	}
+	function resumeMarqueeMove()
+	{
+		dhtmlgoodies_marqueeTmpStep = dhtmlgoodies_marqueeSteps;
+	}
+	function initMarquee()
+	{
+		dhtmlgoodies_marqueeObj = document.getElementById('dhtmlgoodies_marquee');
+
+		var spans = dhtmlgoodies_marqueeObj.getElementsByTagName('DIV');
+		for(var no=0;no<spans.length;no++){
+			if(spans[no].className=='textObj'){
+				if(!dhtmlgoodies_marqueeTextObj){
+					dhtmlgoodies_marqueeTextObj = spans[no];
+					spans[no].style.display='block';
+				}else spans[no].style.display='none';
+				dhtmlgoodies_marqueeTextObjects.push(spans[no]);
+				var hiddenSpan = document.createElement('SPAN');
+				hiddenSpan.innerHTML = ' '
+				spans[no].appendChild(hiddenSpan);
+				dhtmlgoodies_marqueeHiddenSpans.push(hiddenSpan);
+
+			}
+		}
+
+		var oldIE = isOldIe();
+
+		if(dhtmlgoodies_marqueePosition.toLowerCase()=='top'){
+			dhtmlgoodies_marqueeObj.style.top = '0px';
+		}else{
+			if(oldIE){
+				dhtmlgoodies_marqueeObj.style.bottom = '0px';
+			}else{
+				dhtmlgoodies_marqueeObj.style.bottom = '-1px';
+			}
+		}
+
+
+
+
+		dhtmlgoodies_marqueeObj.style.display='block';
+		dhtmlgoodies_marqueeTextObj.style.left = document.documentElement.offsetWidth + 'px';
+		dhtmlgoodies_marqueeObj.onmouseover = stopMarqueeMove;
+		dhtmlgoodies_marqueeObj.onmouseout = resumeMarqueeMove;
+		if(oldIE)window.onscroll = repositionMarquee; else dhtmlgoodies_marqueeObj.style.position = 'fixed';
+
+		dhtmlgoodies_marqueeObj.style.display='block';
+		dhtmlgoodies_marqueeTmpStep = dhtmlgoodies_marqueeSteps;
+
+		setInterval('marqueeMove()',dhtmlgoodies_marqueeSpeed);
+	}
+
+	function isOldIe() {
+		var isMsie = navigator.userAgent.indexOf('MSIE') >=0;
+		if(isMsie) {
+			string = '';
+			for(var prop in navigator) {
+				string = string + prop + ':' + navigator[prop] + '\n';
+
+			}
+			var version = navigator.userAgent;
+			for(var i=4;i<=7;i++) {
+				if(version.indexOf('MSIE ' + i) >=0){
+					return true;
+				}
+			}
+			return false;
+		}else{
+			return false;
+		}
+
+	}
+
+	</script>
+<script type="text/javascript">
+
+function GetClock(){
+d = new Date();
+nhour  = d.getHours();
+nmin   = d.getMinutes();
+     if(nhour ==  0) {ap = " AM";nhour = 12;} 
+else if(nhour <= 11) {ap = " AM";} 
+else if(nhour == 12) {ap = " PM";} 
+else if(nhour >= 13) {ap = " PM";nhour -= 12;}
+
+if(nmin <= 9) {nmin = "0" +nmin;}
+
+
+document.getElementById('clockbox').innerHTML=""+nhour+":"+nmin+ap+"";
+setTimeout("GetClock()", 1000);
+}
+window.onload=GetClock;
+
+
+</script>
+
+
+
+
+
+    </head>
+<body style="background:#000;"><style type="text/css" id="generatedSmoothing">*:not(pre|code){text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;}pre,code{-webkit-font-smoothing:auto;}</style>
+	
+
+<script src="./a_files/jquery.zrssfeed.min.js" type="text/javascript"></script>
+<script src="./a_files/jquery.zframework.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#ztickera').rssfeed('http://dzrhnews.com/feed/',{
+		header: false,
+		titletag: 'div',
+		date: false,
+		content: false
+	}, function(e) {
+		$.zazar.ticker({selector: '#ztickera ul'});
+	});
+
+	$('#zslider').rssfeed('http://dzrhnews.com/feed/',{
+		header: false,
+		titletag: 'div',
+		date: false,
+		content: false,
+		limit: 20
+	}, function(e) {
+		$.zazar.slider({selector: '#zslider ul'});
+	});
+
+	$('#zrotate').rssfeed('http://mix.chimpfeedr.com/d68ce-ayaldevtext',{
+		header: false,
+		titletag: 'div',
+		date: false,
+		content: false,
+		limit: 50
+	}, function(e) {
+		$.zazar.rotate({selector: '#zrotate ul'});
+	});
+});
+</script>
+
+
+
+<div class="live-tile pse" data-mode="carousel" data-direction="vertical" data-delay="2500" style="z-index:2;">
+
+		<div>
+        	AS OF MAY 16, 2016
+		</div>
+		<div>
+        	FOREIGN EXCHANGE
+		</div>
+        <div>
+            U.S. $ 46.46
+        </div>
+        <div>
+            JPN YEN 0.4297
+        </div>
+        <div>
+           U.K.POUND 67.0023
+        </div>	
+        <div>
+             HK $ 6.0122
+        </div>
+		<div>
+        	 SWISS FRANC 47.913
+		</div>
+		<div>
+        	 CAN $ 	36.0569
+		</div>
+        <div>
+        	SG $ 33.9803
+		</div>
+        <div>
+        	AUS $ 33.8232
+		</div>
+        <div>
+        	BAH DIN 123.7984
+		</div>
+        <div>
+        	SAR RIAL 12.4449
+		</div>
+        <div>
+        	BRUN $ 	33.8571
+		</div>
+        <div>
+        	INDO RUPIAH 0.0035
+		</div>
+        <div>
+        	THAI BAHT 1.3173
+		</div>
+        <div>
+        	AED DIRHAM 12.7071
+		</div>
+        <div>
+        	 CHIN YUAN  7.1473
+		</div>
+        <div>
+        	KOR WON 0.0397
+		</div> 
+        <div>
+        	EURO 52.8047
+		</div>
+		<div>
+        	PSEi 7,511.74
+
+		</div>
+		<div>
+		74.95 PTS UP
+		</div>
+		<div>
+		1.008 % UP
+		</div>
+
+</div>
+
+<div id="time">
+	<div id="clockbox"></div>
+</div>
+<div id="tweets"><div id="zrotate"></div></div>
+
+<!-- Start of marquee HTML code -->
+<div id="blackticker"><div id="dhtmlgoodies_marquee" style="z-index:1;">
+	<div class="textObj">
+    
+PAGASA: 
+
+	<!--DITO ANG PAGASA-->
+
+Issued at: 5:00 PM today, 16  May 2016 | 
+Synopsis: Intertropical Convergence Zone (ITCZ) affecting Southern Mindanao | 
+
+
+Forecast: Cloudy skies with light to moderate rains and isolated thunderstorms will be experienced over Mindanao. Partly cloudy to cloudy skies with isolated rainshowers or thunderstorms mostly in the afternoon or evening will prevail over Metro Manila and the rest of the country | 
+
+Light to moderate  winds blowing from the east to southeast will prevail over Luzon and  coming from the east to northeast over the rest of the country. The coastal waters throughout the archipelago will be slight to moderate | 
+  
+
+<!-- WAG SHORTCUT MAG REPLACE, NAWAWALA DIVIDER BETWEEN CITIES -->
+
+  TIDAL PREDICTION:
+
+MANILA: <!-- PASTE AFTER THIS -->2016-05-16 Mon 12:32 AM PHT   0.12 meters  Low Tide
+| 5:28 AM PHT   Sunrise
+| 8:08 AM PHT   0.59 meters  High Tide
+| 12:01 PM PHT   0.51 meters  Low Tide
+| 5:50 PM PHT   0.69 meters  High Tide
+| 6:16 PM PHT   Sunset
+ 
+ <!-- WAG SHORTCUT MAG REPLACE, NAWAWALA DIVIDER BETWEEN CITIES -->
+ 
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; CEBU: <!-- PASTE AFTER THIS -->2016-05-16 Mon  1:11 AM PHT   0.33 meters  Low Tide
+| 5:22 AM PHT   Sunrise
+| 8:21 AM PHT   0.91 meters  High Tide
+| 1:40 PM PHT   0.67 meters  Low Tide
+| 5:59 PM PHT   Sunset
+| 7:19 PM PHT   0.97 meters  High Tide
+   
+ <!-- WAG SHORTCUT MAG REPLACE, NAWAWALA DIVIDER BETWEEN CITIES -->
+ 
+ &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; DAVAO:  <!-- PASTE AFTER THIS -->2016-05-16 Mon  2:11 AM PHT   1.10 meters  High Tide
+| 5:20 AM PHT   Sunrise
+| 8:20 AM PHT   0.48 meters  Low Tide
+| 2:16 PM PHT   1.07 meters  High Tide
+| 5:47 PM PHT   Sunset
+| 8:34 PM PHT   0.31 meters  Low Tide
+<!--
+NDRRMC HOTLINES: (02)911-1406; (02)912-5668; (02)912-5668; (02)911-1873; (02)912-3046 | 
+MMDA HOTLINES: 136; (02)882-0925 (FLOOD CONTROL); (02)882-4150 TO 77 LOC 337 (RESCUE); (02)882-0860 ; 255 (METROBASE) | 
+DOTC HOTLINES: 7890 OR (0918)884-8484 | 
+DSWD HOTLINES: (02)856-3665; (02)852-8081 | 
+DPWH HOTLINE: (02)304-3370 | 
+BFP HOTLINES: 117; (02)729-5166 | 
+PAGASA HOTLINES: (02)433-8526 (WEATHER UPDATE); (02)927-2877; (02)926-4258 (WEATHER FORECAST) | 
+PCG HOTLINES: (02)527-3877L (0917)PCG-DOTC; (0918)967-4697 | 
+PNP HOTLINES: 117 OR SEND TXT PNP TO 2920; (02)723-6983; (0917)847-5757 (TEXT HOTLINE) | 
+RED CROSS HOTLINES: 143; (02)527-0000; (02)527-8385 TO 95 | 
+DOH HOTLINES: (02)711-1002; (0920)949-8419 | 
+NFA HOTLINES: 4541214, TEXT LINE 0906-4363133
+ -->
+ 
+    </div>
+</div></div>
+<!-- END OF MARQUEE HTML CODE -->
+<script type="text/javascript">
+initMarquee();	// Initialize marquee script
+</script>
+
+
+
+
+</div>
+
+				
+<div class="tago"><div id="newslocal"></div></div>
+</div>
+ 
+         
+
+	<script type="text/javascript" src="./a_files/jquery.newsfeed.js"></script>  
+    <script src="./a_files/MetroJs.lt.js" type="text/javascript"></script>
+	<script type="text/javascript">
+        $(document).ready(function () {
+            $(".live-tile,.flip-list").liveTile();
+        });
+    </script>
+           
+<script>
+var newsText = {
+"<span class=\"plug web\">dzrhnews.com</span>" : "#",
+"<span class=\"Aplug fb\">fb.com/dzrhnews</span>" : "#",
+"<span class=\"plug tw\">twitter.com/dzrhnews</span>" : "#",
+"<span class=\"plug sms\">Textline:<br/>RH&lt;space&gt;MESSAGE<br/>send to 2600</span>" : "#",
+"<span class=\"plug phone\">Hotline:<br/>(02)8326117 & (02)8326116</span>" : "#",
+"Pangunahing Balita" : "#",
+"Joe Taruc" : "#",
+"Deo Macalma" : "#"
+}
+$('#news').newsFeed({
+newsData: newsText,
+type:1, // 1=fade effect
+timeInterval: 5000, // animation interval
+targetBlank: true // Open the link in a new window
+});
+</script>
+
+
+
+<script>
+var newsText2 = {
+"<img src=\"i_files/rss-icon (1).png\" /><br/>dzrhnews.com" : "#",
+"<img src=\"i_files/facebook-icon (1).png\" /><br/>facebook.com/dzrhnews" : "#",
+"<img src=\"i_files/twitter-icon (1).png\" /><br/>twitter.com/dzrhnews" : "#",
+<!--"Textline:<br/>RH&lt;space&gt;MESSAGE<br/>send to 2600" : "#",-->
+"Hotlines:<br/>(02)832-6117 & (02)832-6167" : "#",
+
+<!--DITO ANG HEADLINES-->
+
+
+
+
+	"SEN. CAYETANO, CPP-NPA INALOK NG MASELANG PWESTO SA DUTERTE GOV'T." : "#", 
+
+
+	"'PADRINO' SYSTEM SA PAGPASOK SA GOBYERNO, TINAPOS NI DUTERTE ; 'BEST & BRIGHTEST' NA PAPASOK SA GOBYERNO, MAY MAGANDANG 'ALLOWANCE'" : "#", 
+
+
+	"DUTERTE NIRESBAKAN NA SI TRILLANES : PINAGPAPALIWANAG SA NAWALANG 'SCARBOROUGH SHOAL'" : "#", 
+
+
+	"MALALAKAS NA BARIL, IPINAGBAWAL NI DUTERTE ; TATLONG-ARAW NA PROSESO NG MGA PAPELES SA GOBYERNO, INIUTOS NI DIGONG" : "#", 
+
+
+	"KONGRESO, INUTUSAN NI DUTERTE NA HUWAG IPAHIYA ANG MGA INIIMBESTIGAHANG OPISYAL" : "#", 
+
+
+	"PARUSANG BITAY, PINABABALIK NI DUTERTE PARA SA MGA KASONG DROGA, PAGPATAY" : "#", 
+
+
+	"'CORRUPT' GENERALS, PINAPILI KUNG 'RESIGN' O SASABAK SA BAKBAKAN SA SULU" : "#", 
+
+
+	"EDSA MAAGANG NAG'TRAFFIC' DAHIL SA BANGKAY NG HINOLDAP NA TAXI DRIVER" : "#", 
+
+
+	"GINANG, GINILITAN NG LEEG NG KINAKASAMA...SUSPECT NANAKSAK PA NG MGA TANOD BAGO NAGLASLAS NG PULSO" : "#", 
+
+
+	"TRIVIA : MGA 'REFUGEE' SA GERMANY, TINURUAN TUNGKOL SA 'SEX'" : "#", 
+
+
+	"EH DI WOW : BUGKOS NG BUHOK NG ISA SA 'FOUNDING FATHERS' NG AMERIKA, BINILI NG MAHAL" : "#", 
+
+
+
+	
+ 
+
+
+/*"TROPICAL CYCLONE WARNING | TROPICAL DEPRESSION ONYOK :     Location of Center (as of 4:00 p.m.): 210 km East of Mati City, Davao Oriental" : "#",
+"TROPICAL CYCLONE WARNING | TROPICAL DEPRESSION ONYOK :   Coordinates: 7.3°N, 128.1°E" : "#",
+"TROPICAL CYCLONE WARNING | TROPICAL DEPRESSION ONYOK :   Strength:Maximum sustained winds of 45 kph near the center" : "#",
+"TROPICAL CYCLONE WARNING | TROPICAL DEPRESSION ONYOK :   Movement: Forecast to move West at 18 kph" : "#",
+"TROPICAL CYCLONE WARNING | TROPICAL DEPRESSION ONYOK : PUBLIC STORM WARNING SIGNAL #1: Surigao del Sur including Siargao Island, Surigao del Norte, Dinagat Province, Misamis Oriental, Camiguin, Agusan del Norte, Agusan del Sur, Davao Oriental, Davao del Norte" : "#",
+"TROPICAL CYCLONE WARNING | TROPICAL DEPRESSION ONYOK : PUBLIC STORM WARNING SIGNAL #1: Compostela Valley, Bukidnon, Lanao del Norte, Lanao del Sur, Misamis Occidental, Davao del Sur" : "#",
+"TROPICAL CYCLONE WARNING | TROPICAL DEPRESSION ONYOK : PUBLIC STORM WARNING SIGNAL #1: Northern part of Davao Occidental, Sultan Kudarat, Maguindanao, North Cotabato" : "#",
+"TROPICAL CYCLONE WARNING | TROPICAL DEPRESSION ONYOK : PUBLIC STORM WARNING SIGNAL #1: Northern part of South Cotabato, Zamboanga del Norte, Zamboanga del Sur and Zamboanga Sibugay. " : "#",
+*/
+
+
+
+/*"<img src=\"i_files/p1.png\" />" : "#",
+"<img src=\"i_files/p2.png\" />" : "#",
+"<img src=\"i_files/vp1.png\" />" : "#",
+"<img src=\"i_files/vp2.png\" />" : "#",
+"<img src=\"i_files/s1.png\" />" : "#",
+"<img src=\"i_files/s2.png\" />" : "#",
+"<img src=\"i_files/s3.png\" />" : "#",
+"<img src=\"i_files/s4.png\" />" : "#",
+"<img src=\"i_files/s5.png\" />" : "#",*/
+
+<!--END OF HEADLINES-->
+
+}
+
+$('#newslocal').newsFeed({
+newsData: newsText2,
+type:1, // 1=fade effect
+timeInterval: 10000, // animation interval
+targetBlank: true // Open the link in a new window
+});
+</script>
+
+<script>
+$( document ).ready(function() {
+  $( "#tweets" ).show( 300 ).delay( 800 ).hide( 400 );
+});
+
+jwerty.key('a', function() {
+  $( ".smarticker, .pse, .tago" ).toggle( "fast" );
+    $( "#blackticker" ).toggle( "slow" );
+});
+
+</script>
+
+</body></html>

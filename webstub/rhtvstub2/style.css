@@ -1,0 +1,445 @@
+/* ayaldev.com */
+body,td,th {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: #000;
+}
+body {
+	background-color: #f2f2f2;
+	padding:0px;
+	margin:0px;
+}
+a:link {
+	color: #1E1E1E;
+	text-decoration: underline;
+}
+a:visited {
+	text-decoration: underline;
+	color: #1E1E1E;
+}
+a:hover {
+	text-decoration: none;
+}
+a:active {
+	text-decoration: underline;
+	color: #1E1E1E;
+}
+#center {
+	width: 980px;
+	margin:0 auto;
+}
+#main {
+	background:#FFF;
+	border:#e8e6e6 solid 1px;
+	width: 980px;
+	padding:10px;
+	margin:0 auto;
+	float:left;
+}
+#banner {
+	width:980px;
+	height:150px;
+	margin-bottom:10px;
+	float:left;
+}
+#menu {
+	width: 980px;
+	height:50px;
+	margin-bottom:10px;
+	float:left;
+	background-color:#333;
+	line-height:50px;
+	
+}
+#footer {
+	width: 980px;
+	height:50px;
+	background-color:#333;
+	line-height:50px;
+	text-align:center;
+	float: left;
+	color:#fff;
+}
+.piepic {
+	margin: 0px;
+	padding:0px;
+	float:left;	
+	height: 350px;
+	margin-right:10px;
+	margin-bottom:10px;
+	margin-left:10px;
+}
+.pietxt {
+	margin: 0px;
+	padding:0px;	
+	float:left;
+	height: 350px;
+	margin-bottom:10px;
+}
+.map {
+	margin: 0px;
+	padding:0px;
+	float:left;	
+	height: 940px;
+	margin-right:10px;
+	margin-bottom:10px;
+
+}
+
+.supporttxt {
+width: 800px;
+font-size:14pt;
+position:absolute;
+top:250px;
+padding-left: 0px;
+z-index:0;
+}
+
+.list {
+	margin: 0px;
+	padding:0px;	
+	float:left;
+	width:170px;
+	height:940px;
+	background-color:#333;
+	margin-bottom:10px;
+	overflow:no;
+}
+.list img {
+	float:left;
+	margin-bottom:1px;
+}
+#tabs{
+	margin-bottom: -5px;	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+nav{
+	margin-top:-16px;
+}
+nav ul{
+	position:relative;
+	padding:0px;
+}
+nav ul li{
+	cursor:pointer;
+	background:#1B1B1B;
+	color:#fff;
+	text-align:center;
+	line-height:50px;
+	position:relative;
+	list-style:none;
+	padding:0;
+	margin:0 auto;
+	float:left;
+	width:200px;
+	height:50px;
+	margin-right:1px;
+}
+li:hover{
+		background:#333;
+		color:#fff !important; 
+}
+nav a:hover{
+	
+}
+.aktibo{
+		background:#FFF !important;
+		color:#333 !important;
+		font-weight:bold;
+}
+.aktibo:hover{
+		background:#FFF !important;
+		color:#333 !important;
+		font-weight:bold;
+}
+nav ul ul{
+	display:none;
+}
+nav ul li:hover >ul{
+	display:block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.tabGroup {
+    width: 980px;
+
+}
+ 
+
+.tabGroup > input[type="radio"] {
+    position: absolute;
+    left:-100px;
+
+}
+ 
+
+.tabGroup > div.tablabels {
+    display: inline-block;
+    vertical-align: top;
+    width:175px;
+	height:940px;
+	overflow:scroll;
+
+}
+ 
+
+.tabGroup > div.tablabels > label {
+
+    display: inline-block;
+    width:150px;
+    height:50px;
+    background-color:#ddd;
+	margin-left:6px;
+    z-index:32767;
+	cursor:pointer;
+}
+ 
+
+.tabGroup > input#rad1:focus ~ div.tablabels > label[for="rad1"],
+.tabGroup > input#rad2:focus ~ div.tablabels > label[for="rad2"],
+.tabGroup > input#rad3:focus ~ div.tablabels > label[for="rad3"],
+.tabGroup > input#rad4:focus ~ div.tablabels > label[for="rad4"],
+.tabGroup > input#rad5:focus ~ div.tablabels > label[for="rad5"],
+.tabGroup > input#rad6:focus ~ div.tablabels > label[for="rad6"],
+.tabGroup > input#rad7:focus ~ div.tablabels > label[for="rad7"],
+.tabGroup > input#rad8:focus ~ div.tablabels > label[for="rad8"],
+.tabGroup > input#rad9:focus ~ div.tablabels > label[for="rad9"],
+.tabGroup > input#rad10:focus ~ div.tablabels > label[for="rad10"],
+.tabGroup > input#rad11:focus ~ div.tablabels > label[for="rad11"],
+.tabGroup > input#rad12:focus ~ div.tablabels > label[for="rad12"],
+.tabGroup > input#rad13:focus ~ div.tablabels > label[for="rad13"],
+.tabGroup > input#rad14:focus ~ div.tablabels > label[for="rad14"],
+.tabGroup > input#rad15:focus ~ div.tablabels > label[for="rad15"],
+.tabGroup > input#rad16:focus ~ div.tablabels > label[for="rad16"],
+.tabGroup > input#rad17:focus ~ div.tablabels > label[for="rad17"],
+.tabGroup > input#rad18:focus ~ div.tablabels > label[for="rad18"],
+.tabGroup > input#rad19:focus ~ div.tablabels > label[for="rad19"],
+.tabGroup > input#rad20:focus ~ div.tablabels > label[for="rad20"] {
+	border-bottom:#333 2px solid;
+
+
+}
+ 
+
+.tabGroup > input#rad1:checked ~ div.tablabels > label[for="rad1"],
+.tabGroup > input#rad2:checked ~ div.tablabels > label[for="rad2"],
+.tabGroup > input#rad3:checked ~ div.tablabels > label[for="rad3"],
+.tabGroup > input#rad4:checked ~ div.tablabels > label[for="rad4"],
+.tabGroup > input#rad5:checked ~ div.tablabels > label[for="rad5"],
+.tabGroup > input#rad6:checked ~ div.tablabels > label[for="rad6"],
+.tabGroup > input#rad7:checked ~ div.tablabels > label[for="rad7"],
+.tabGroup > input#rad8:checked ~ div.tablabels > label[for="rad8"],
+.tabGroup > input#rad9:checked ~ div.tablabels > label[for="rad9"],
+.tabGroup > input#rad10:checked ~ div.tablabels > label[for="rad10"],
+.tabGroup > input#rad11:checked ~ div.tablabels > label[for="rad11"],
+.tabGroup > input#rad12:checked ~ div.tablabels > label[for="rad12"],
+.tabGroup > input#rad13:checked ~ div.tablabels > label[for="rad13"],
+.tabGroup > input#rad14:checked ~ div.tablabels > label[for="rad14"],
+.tabGroup > input#rad15:checked ~ div.tablabels > label[for="rad15"],
+.tabGroup > input#rad16:checked ~ div.tablabels > label[for="rad16"],
+.tabGroup > input#rad17:checked ~ div.tablabels > label[for="rad17"],
+.tabGroup > input#rad18:checked ~ div.tablabels > label[for="rad18"],
+.tabGroup > input#rad19:checked ~ div.tablabels > label[for="rad19"],
+.tabGroup > input#rad20:checked ~ div.tablabels > label[for="rad20"] {
+
+    position:relative;
+
+}
+ 
+.tabGroup > div.tabcontent {
+    display: inline-block;
+    height: 750px;
+
+}
+ 
+
+.tabGroup > div.tabcontent > div {
+    width:800px;
+	height:750px;
+    display: none;
+    background-color: #333;
+
+
+}
+ 
+.tabGroup > .tab1:checked ~ div.tabcontent > .tab1,
+.tabGroup > .tab2:checked ~ div.tabcontent > .tab2,
+.tabGroup > .tab3:checked ~ div.tabcontent > .tab3,
+.tabGroup > .tab4:checked ~ div.tabcontent > .tab4,
+.tabGroup > .tab5:checked ~ div.tabcontent > .tab5,
+.tabGroup > .tab6:checked ~ div.tabcontent > .tab6,
+.tabGroup > .tab7:checked ~ div.tabcontent > .tab7,
+.tabGroup > .tab8:checked ~ div.tabcontent > .tab8,
+.tabGroup > .tab9:checked ~ div.tabcontent > .tab9,
+.tabGroup > .tab10:checked ~ div.tabcontent > .tab10,
+.tabGroup > .tab11:checked ~ div.tabcontent > .tab11,
+.tabGroup > .tab12:checked ~ div.tabcontent > .tab12,
+.tabGroup > .tab13:checked ~ div.tabcontent > .tab13,
+.tabGroup > .tab14:checked ~ div.tabcontent > .tab14,
+.tabGroup > .tab15:checked ~ div.tabcontent > .tab15,
+.tabGroup > .tab16:checked ~ div.tabcontent > .tab16,
+.tabGroup > .tab17:checked ~ div.tabcontent > .tab17,
+.tabGroup > .tab18:checked ~ div.tabcontent > .tab18,
+.tabGroup > .tab19:checked ~ div.tabcontent > .tab19,
+.tabGroup > .tab20:checked ~ div.tabcontent > .tab20 {
+    display: inline-block;
+
+}

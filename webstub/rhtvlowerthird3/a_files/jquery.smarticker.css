@@ -1,0 +1,691 @@
+/*
+ * SmarTicker
+ * http://powerup.ir/projects/smarticker
+ * Copyright (c) 2013 Meghdad Hadidi
+ */
+
+.smarticker{
+	width: 100%;
+	background: #fff;
+	margin: 0 auto;
+	direction: ltr;
+
+}
+
+.hider {
+	display: none;
+}
+
+.box{
+	min-height:100px;
+	background: #fff;
+	overflow: auto;
+}
+
+.border{
+	border:1px solid #ccc;
+}
+
+.rounded{
+	border-radius: 20px;
+}
+
+.shadow{
+}
+
+.size1{
+	height: 100px;
+	overflow: hidden;
+}
+
+.smarticker .sec1, .smarticker .sec1-2, .smarticker .sec2, .smarticker .sec3, .smarticker .sec4, .smarticker .sec5, .smarticker .sec6, .smarticker .sec7{
+	float: left;
+}
+
+.smarticker .sec1{
+	width: 10%;
+}
+
+.smarticker .sec1-2{
+	width: 20%;
+	font-size: 25px;
+	font-family: "Segoe UI", "Segoe UI Light", "Segoe UI Semibold", "Segoe UI Semilight", "Segoe UI Symbol";
+	vertical-align: top;
+	text-align: right;
+	font-weight: lighter;
+	line-height: 25px !important;
+	padding-left: 0px;
+	padding-right: 0px;
+	text-transform: none;
+	background-color:#000;
+}
+
+.smarticker .sec2{
+	width: 20%;
+}
+
+.smarticker .sec3{
+	width: 33.333%;
+}
+
+.smarticker .sec4{
+	width: 25%;
+}
+
+.smarticker .sec5{
+	width: 50%;
+}
+
+.smarticker .sec6{
+	width: 60%;
+}
+
+.smarticker .sec7{
+	width: 70%;
+}
+
+.smarticker ul{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.smarticker .smarticker-cats, .smarticker-cats .catlist, .smarticker .smarticker-category, .smarticker .zticker{
+	height: 100%;
+	overflow: hidden;
+}
+
+
+.smarticker li{
+	height: 100px;
+	line-height: 30px;
+		text-transform:uppercase;
+}
+
+.smarticker a{
+	text-decoration: none;
+}
+
+.smarticker .zticker{
+	text-align: left;
+	position: relative;
+	height:100px;
+	padding-right: 50px;
+	vertical-align:top !important;
+	text-transform:uppercase;
+	background:#69F;		
+}
+
+.smarticker .zticker ul{
+	margin-left: 15px;
+	display: none;
+}
+
+.smarticker .zticker ul li{
+	position: absolute;
+	display: none;
+	height: 100%;
+	top: 0px;
+	left: 17px;
+}
+
+
+.cover{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 2;
+	float: right;
+}
+
+.flasher{
+	width:10px;
+	height:100%;
+	line-height:28px;
+	margin-left:5px;
+	float:left;
+}
+
+.smart-controller{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	height: 100%;
+	z-index: 3;
+}
+
+
+
+
+/* ---------- Theme 1 ----------- */
+
+.theme1{
+	background: #fff;
+}
+
+.theme1 .zticker a{
+	color: #F0F0F0;
+	font-family: "Segoe UI", "Segoe UI Light", "Segoe UI Semibold", "Segoe UI Semilight", "Segoe UI Symbol";
+	font-size: 30px;
+	text-align: left;
+	vertical-align: top !important;
+	line-height: 30px;
+	font-weight:bold;
+	height:100px;
+	width:100%;
+
+}
+
+.theme1 .smarticker-cats{
+	position: relative;
+	background: #999;
+}
+
+.theme1 .smarticker-cats .left{
+	position: absolute;
+	left: 0px;
+	background: url('../images/left-flc-w.png') no-repeat right center;
+	width: 20%;
+	height: 100%;
+}
+
+.theme1 .smarticker-cats .right{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	z-index: 1;
+	background: url('../images/right-flc-w.png') no-repeat right center;
+	width: 20%;
+	height: 100%;
+}
+
+.no-category .smarticker-cats .left{
+	display: none;
+}
+
+.theme1 .smarticker-cats a{
+	color: #fff;
+	text-decoration: none;
+	font-family: Calibri, Tahoma;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+
+.theme1 .flasher{
+	color:#666;
+}
+
+.smarticker-cats li{
+	background-color:#c3c3c3;
+}
+
+
+/* ------------- Theme 2 ------------ */
+.theme2{
+	background: #333;
+}
+
+.theme2 .zticker a{
+	color: #fff;
+	font-family: Calibri, Tahoma;
+	font-size: 12px;
+}
+
+.theme2 .smarticker-cats{
+	position: relative;
+	background: #999;
+}
+
+.theme2 .smarticker-cats .left{
+	position: absolute;
+	left: 0px;
+	background: url('../images/left-flc-b.png') no-repeat right center;
+	width: 20%;
+	height: 100%;
+}
+
+.theme2 .smarticker-cats .right{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	z-index: 1;
+	background: url('../images/right-flc-b.png') no-repeat right center;
+	width: 20%;
+	height: 100%;
+}
+
+.no-category .smarticker-cats .left{
+	display: none;
+}
+
+.theme2 .smarticker-cats ul a{
+	color: #fff;
+	text-decoration: none;
+	font-family: Calibri, Tahoma;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+
+.theme2 .flasher{
+	color:#fff;
+}
+
+.theme2 .tickertitle{
+	background-color:#4575d4;
+}
+
+/* ------------- Theme 3 ------------ */
+.theme3{
+	background: #333;
+}
+
+.theme3 .zticker a{
+	color: #fff;
+	font-family: Calibri, Tahoma;
+	font-size: 12px;
+}
+
+.theme3 .smarticker-cats{
+	position: relative;
+	background: #fff;
+}
+
+.theme3 .smarticker-cats .left, .theme3 .smarticker-cats .right{
+	display: none;
+}
+
+.theme3 .smarticker-cats a{
+	color: #fff;
+	text-decoration: none;
+	font-family: Calibri, Tahoma;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+
+.theme3 .flasher{
+	color:#fff;
+}
+
+.theme3 .tickertitle{
+	background-color:#cd0074;
+}
+
+/* ------------- Theme 4 ------------ */
+.theme4{
+	background: #fff;
+}
+
+.theme4 .zticker a{
+	color: #666;
+	font-family: Calibri, Tahoma;
+	font-size: 12px;
+}
+
+.theme4 .smarticker-cats{
+	position: relative;
+	background: #999;
+}
+
+.theme4 .smarticker-cats .left, .theme4 .smarticker-cats .right{
+	display: none;
+}
+
+.theme4 .smarticker-cats a{
+	color: #fff;
+	text-decoration: none;
+	font-family: Calibri, Tahoma;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+
+.theme4 .flasher{
+	color:#666;
+}
+
+.theme4 .tickertitle{
+	background-color:#00b64f;
+}
+
+/* ----------- Text Controller ------------ */
+.c1 .smart-controller span{
+	text-align: center;
+	background: #fff;
+	color: #ccc;
+	font-size: 11px;
+	display: block;
+	padding: 9px 9px;
+	font-family: Calibri, Tahoma;
+	float: left;
+	border-left: 1px solid #eee;
+	cursor: pointer;
+	-webkit-transition: all 0.2s ease-in-out 0s;
+	-moz-transition: all 0.2s ease-in-out 0s;
+	-o-transition: all 0.2s ease-in-out 0s;
+	transition: all 0.2s ease-in-out 0s;
+}
+
+.c1 .smart-controller span:hover{
+	color: #bbb;
+	background: #efefef;
+	-webkit-transition: all 0.2s ease-in-out 0s;
+	-moz-transition: all 0.2s ease-in-out 0s;
+	-o-transition: all 0.2s ease-in-out 0s;
+	transition: all 0.2s ease-in-out 0s;
+}
+
+.c1 .smart-controller span:active{
+	color: #999;
+	background: #dfdfdf;
+	-webkit-transition: all 0.1s ease-in-out 0s;
+	-moz-transition: all 0.1s ease-in-out 0s;
+	-o-transition: all 0.1s ease-in-out 0s;
+	transition: all 0.1s ease-in-out 0s;
+}
+
+/* ----------- C2 Controller = Icons ------------ */
+.c2 .smart-controller span{
+	text-align: center;
+	background-color: transparent;
+	background-image:  url('../images/controller.png');
+	background-repeat: no-repeat;
+	color: #ccc;
+	text-indent: -100000px;
+	font-size: 11px;
+	display: block;
+	padding: 9px 12px;
+	font-family: Calibri, Tahoma;
+	float: left;
+	border-left: 1px solid #eee;
+	cursor: pointer;
+	-webkit-transition: all 0.2s ease-in-out 0s;
+	-moz-transition: all 0.2s ease-in-out 0s;
+	-o-transition: all 0.2s ease-in-out 0s;
+	transition: all 0.2s ease-in-out 0s;
+}
+
+.theme3.c2 .smart-controller span, .theme2.c2 .smart-controller span{
+	border-left: 1px solid #999;
+}
+
+.c2 .smart-controller span:hover{
+	color: #bbb;
+	background-color: transparent;
+	-webkit-transition: all 0.2s ease-in-out 0s;
+	-moz-transition: all 0.2s ease-in-out 0s;
+	-o-transition: all 0.2s ease-in-out 0s;
+	transition: all 0.2s ease-in-out 0s;
+}
+
+.c2 .smart-controller span:active{
+	color: #999;
+	background-color: transparent;
+	-webkit-transition: all 0.1s ease-in-out 0s;
+	-moz-transition: all 0.1s ease-in-out 0s;
+	-o-transition: all 0.1s ease-in-out 0s;
+	transition: all 0.1s ease-in-out 0s;
+}
+
+.c2 .next-news:active, .c2 .next-news:hover{
+	background-position: right center;
+	background-image: url('../images/controller.png');
+	background-repeat: no-repeat;
+}
+
+.c2 .prev-news:active, .c2 .prev-news:hover{
+	background-position: left center;
+	background-image: url('../images/controller.png');
+	background-repeat: no-repeat;
+}
+
+.c2 .prev-news{
+	background-position: left center;
+}
+
+.c2 .next-news{
+	background-position: right center;
+}
+
+.progress-bar{
+	width:100%;
+	height:2px;
+	background-color:#eee;
+	position:absolute;
+	bottom:0px;
+	left:0px;
+	z-index:3;
+}
+
+
+.tickertitle{
+	height:100px;
+	text-align:center;
+	font-weight:bold;
+	background-color:#e20048;
+	color:#fff;
+	vertical-align:top;
+}
+ 
+#news {
+	padding-top: 3px;
+}
+ 
+#news a {
+	font-weight: bold !important;
+	font-variant: normal !important;
+	text-transform: none !important;
+	font-size: 25px !important;
+	text-decoration: none !important;
+	z-index:5;
+}
+
+
+	#mainContainer{
+		width:760px;
+		border-left:1px solid #000;
+		border-right:1px solid #000;
+		margin:0 auto;
+		height:100%;
+		text-align:left;
+	}
+	#topRow{
+
+	}
+	#mainContent{
+		padding-left:10px;
+		padding-right:10px;
+	}
+
+	#dhtmlgoodies_marquee{
+		/* general marquee layout*/
+		padding-top:3px;
+		height:35px;
+		padding-bottom:20px;
+		background-color: #333;
+
+
+		/* End general marquee layout */
+
+
+		position:absolute;
+		left:0px;
+		z-index:1000;
+		bottom:0px;
+		width:100%;
+		overflow:hidden;
+	}
+	body > div#dhtmlgoodies_marquee{	/* Firefox rule */
+		position:fixed;
+	}
+	#dhtmlgoodies_marquee .textObj{	/* Layout for the marquee text */
+		position:absolute;
+		color: #FFF;
+		font-weight:bold;
+		white-space:nowrap;
+		font-family:"Segoe UI";
+		font-size:28px;
+		text-transform:uppercase;
+		margin-top:-10px;
+	}
+	/* Just some layout classes used in this example script */
+	.highlighted{
+		color:#FFF;	// Red color
+	}
+	.greenText{
+		color:#FFF;	// Green color
+	}
+	.pse {
+	background:#FF6;
+	color:#333 !important;
+	font-family:"Segoe UI";
+	font-size:24px;
+	font-weight:bolder;
+	height:60px !important;
+	width: 280px !important;
+	position:absolute !important;
+	bottom:-8px !important;
+	left:190px !important;
+	line-height:22px;
+	padding-bottom:20px;
+	}
+	
+	#zticker {
+	background-color: #039;
+}
+
+	#zticker a {
+		color:#FFF;
+		font-family:"Segoe UI";
+		text-align:left !important;
+		float:left;
+		padding-left:10px;
+		font-size:30px;
+		font-weight:bold;
+		width:1024px;
+		margin-right:50px;
+}
+	#zrotate a {
+
+		font-family:"Segoe UI";
+		text-align:left !important;
+		font-size:20px;
+		font-weight:bold;
+		text-transform:uppercase;
+		line-height:15px;
+		text-decoration:none;
+		clear:both;
+		list-style:none !important;
+		height: inherit !important;
+
+		
+}
+	#zrotate {
+		height:100%;
+		width:450px;
+		background:#09F;
+		list-style:none !important;
+		margin-left:-100px !important;
+		position:fixed;
+		right:0px;
+		top: 10px;
+		padding-top:50px;
+		padding-right:50px;
+}
+		#zrotate li {
+			list-style:none !important;
+			float:left !important;
+			text-align: left;
+			width: 430px;
+			height: 110%;
+			vertical-align:middle !important;
+		padding-left: 15px;
+		padding-right: 15px;
+}
+		.rssRow {
+		height: auto;	
+				
+		}
+		#zrotate .even {
+			background-color: #FFF !important;
+		}
+		.rotateFrame, .rssBody {
+		height:100% !important;
+		}
+		.smarticker, .pse, #blackticker, #newslocal{
+			display:none;
+		}
+		#zrotate .odd a {
+					color:#FFF !important;
+		}
+		#zrotate .even a {
+					color:#09F !important;
+		}
+		#tweets {
+			visibility:hidden;
+		}
+		#zrotate .rotate .rssRow .rotateItem div a::first-word {
+			color: #3F0 !important;	
+		}
+		video.StretchtoFit {
+			width: 300px;
+			
+		}#time {
+	font-size: 30px;
+	font-weight: bold;
+	color: #333;
+	background: #FFF;
+	font-family: "Segoe UI";
+	height: 37px;
+	width: 140px;
+	position: fixed;
+	left: 0px;
+	bottom: 0px;
+	z-index:4;
+	margin: 0px;
+	padding-top: 0px;
+	padding-right: 10px;
+	padding-bottom: 20px;
+	padding-left: 45px;
+	line-height:24px;
+}
+
+.web {
+	background:url(../i_files/web.png) no-repeat;
+	background-position: 140px -50px;
+	width:100%;
+	height:200px;
+	display:block;
+}
+.fb {
+	background:url(../i_files/fb.png) no-repeat;
+	background-position: 140px -50px;
+	width:100%;
+	height:200px;
+	display:block;
+}
+.tw {
+	background:url(../i_files/tw.png) no-repeat;
+	background-position: 140px -50px;
+	width:100%;
+	height:200px;
+	display:block;
+}
+.sms {
+	background:url(../i_files/sms.png) no-repeat;
+	background-position: 140px -50px;
+	width:100%;
+	height:200px;
+	display:block;
+}
+.phone {
+	background:url(../i_files/phone.png) no-repeat;
+	background-position: 140px -50px;
+	width:100%;
+	height:200px;
+	display:block;
+}

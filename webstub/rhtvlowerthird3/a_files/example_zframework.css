@@ -1,0 +1,83 @@
+@charset "UTF-8";
+/**
+ * Zazar Presentation Framework
+ *
+ * Stylesheet: theme.css
+ *
+ * Version: beta
+ * (C) 2011-2012 Zazar Ltd
+ * 
+ * Description: Example theme stylesheet
+ *
+ **/
+
+
+/* Styling for screens */
+
+@media screen, projection {
+
+	/* Accordion */
+
+	.accordion {
+
+	}
+	.accordion h4, .accordion h4 a {  }
+	}
+	.accordion h4:hover {  }
+	.accordion p {
+	}
+
+
+	/* Navigation */
+
+	.navigation li { }
+	.navigation ul li {  }
+	.navigation li ul {
+	}
+	.navigation a span {  }
+	.navigation ul a span, .navigation.vertical a span { }
+
+
+	/* Slider */
+
+	.sliderFrame {  }
+	.sliderItem {  }
+
+
+	/* Pagination */
+
+	.pagination li a {
+
+	}
+	.pagination li a:hover {
+
+	}
+	.pagination li.current a {
+
+	}
+	
+
+	/* Tabs */
+
+	.tabs li {  }
+	.tabs a {
+		
+	}
+	.tabs li.current, .tab { }
+	.tabs li.current a {  }
+
+
+	/* Ticker */
+
+	.ticker {  }
+	.ticker {
+		
+	}
+
+
+	/* Tooltips */
+
+	.tooltipPopup {
+
+	}
+}
